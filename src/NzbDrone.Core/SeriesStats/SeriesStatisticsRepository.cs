@@ -8,7 +8,7 @@ namespace NzbDrone.Core.SeriesStats
     public interface ISeriesStatisticsRepository
     {
         List<SeasonStatistics> SeriesStatistics();
-        SeasonStatistics SeriesStatistics(Int32 seriesId);
+        List<SeasonStatistics> SeriesStatistics(Int32 seriesId);
     }
 
     public class SeriesStatisticsRepository : ISeriesStatisticsRepository
@@ -35,7 +35,7 @@ namespace NzbDrone.Core.SeriesStats
             return mapper.Query<SeasonStatistics>(queryText);
         }
 
-        public SeasonStatistics SeriesStatistics(Int32 seriesId)
+        public List<SeasonStatistics> SeriesStatistics(Int32 seriesId)
         {
             var mapper = _database.GetDataMapper();
 
@@ -49,7 +49,7 @@ namespace NzbDrone.Core.SeriesStats
             sb.AppendLine(GetGroupByClause());
             var queryText = sb.ToString();
 
-            return mapper.Find<SeasonStatistics>(queryText);
+            return mapper.Query<SeasonStatistics>(queryText);
         }
 
         private String GetSelectClause()
