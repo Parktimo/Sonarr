@@ -1,6 +1,6 @@
 {{#each seasons}}
     <span class="season">
-        <span class="season-left">
+        <span class="label">
             <span class="x-season-monitored season-monitored" title="Toggle season monitored status" data-season-number="{{seasonNumber}}">
                 <i class="x-season-monitored-icon {{#if monitored}}icon-sonarr-monitored{{else}}icon-sonarr-unmonitored{{/if}}"/>
             </span>
@@ -9,7 +9,7 @@
         {{else}}
             <span class="season-number">S{{Pad2 seasonNumber}}</span>
         {{/if_eq}}
-        </span><span class="season-right">
+        </span><span class="label">
         {{#with statistics}}
             {{#if_eq totalEpisodeCount compare=0}}
                 <span class="season-status" title="No aired episodes">&nbsp;</span>
